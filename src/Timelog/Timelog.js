@@ -94,12 +94,17 @@ class Timelog extends React.Component {
                 })
               }
               <TimelogLabel time={this.state.end} text="Slut" onChange={this.updateEnd} />
+              <tr>
+                <td></td>
+                <td colspan="3">
+                  <input type="submit" onClick={this.addItem} value="tilføj" />
+                  <input type="button" value="save" onClick={this.onSave} />
+                  <input type="button" value="load" onClick={this.onLoad} />
+                  <input type="button" value="clear" onClick={this.onClear} />
+                </td>
+              </tr>
             </tbody>
           </table>
-          <input type="submit" onClick={this.addItem} value="tilføj" />
-          <input type="button" value="save" onClick={this.onSave} />
-          <input type="button" value="load" onClick={this.onLoad} />
-          <input type="button" value="clear" onClick={this.onClear} />
           <TimelogSummary start={this.state.start} end={this.state.end} items={this.state.items} />
         </form>
       </div>
