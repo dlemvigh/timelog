@@ -100,7 +100,6 @@ class Timelog extends React.Component {
           <input type="button" value="save" onClick={this.onSave} />
           <input type="button" value="load" onClick={this.onLoad} />
           <input type="button" value="clear" onClick={this.onClear} />
-          <h2>Arbejde</h2>
           <TimelogSummary start={this.state.start} end={this.state.end} items={this.state.items} />
         </form>
       </div>

@@ -50,9 +50,10 @@ class TimelogSummary extends React.Component {
   render() {
     return (
       <div>
-        <span>{this.getHours()} timer arbejde</span>
-        <br />
-        <span>{this.getGoHomeTime()} fyraften</span>
+        <h2>Arbejde</h2>
+        <span>{this.getHours()} timer</span>
+        <h2>Fyraften</h2>
+        <span>{this.getGoHomeTime()}</span>
       </div>
     );
   }
