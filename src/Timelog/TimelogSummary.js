@@ -34,7 +34,6 @@ class TimelogSummary extends React.Component {
 
   getGoHomeTime = () => {
     const start = this.time2decimal(this.props.start);
-    const end = this.getEnd();
     const unbillable = this.props.items
       .filter(x => !x.billable)
       .map(x => this.time2decimal(x.time));

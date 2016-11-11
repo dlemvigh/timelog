@@ -69,7 +69,7 @@ class Timelog extends React.Component {
 
   loadState() {
     const json = localStorage.getItem('timelog');
-    return JSON.parse(json);
+    return json && JSON.parse(json);
   }
 
   onClear = () => {
