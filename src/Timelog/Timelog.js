@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment';
 
 import './Timelog.css'
 import TimelogItem from './TimelogItem'
@@ -63,6 +64,26 @@ class Timelog extends React.Component {
     this.setState(newState);
   }
 
+  onClear = () => {
+    this.setState(this.defaultState);
+  }
+
+  startDay = () => {
+    const start = this.getStartOfDay();
+    const newState = Object.assign({}, this.defaultState, {start});
+    this.setState(newState);
+    this.saveState(newState);
+  }
+
+  getStartOfDay = () => {
+    const m = moment();
+    const minutes = m.hours() * 60 + m.minutes();
+    const rounded = Math.floor(minutes / 15) * 15;
+    m.hours(rounded / 60 | 0).minutes(rounded % 60);
+    const start = m.format("h:mm");
+    return start;
+  }
+
   saveState(state) {
     localStorage.setItem('timelog', JSON.stringify(state));
   }
@@ -70,10 +91,6 @@ class Timelog extends React.Component {
   loadState() {
     const json = localStorage.getItem('timelog');
     return json && JSON.parse(json);
-  }
-
-  onClear = () => {
-    this.setState(this.defaultState);
   }
 
   render() {
@@ -96,11 +113,12 @@ class Timelog extends React.Component {
               <TimelogLabel time={this.state.end} text="Slut" onChange={this.updateEnd} />
               <tr>
                 <td></td>
-                <td colspan="3">
+                <td colSpan="3">
                   <input type="submit" onClick={this.addItem} value="tilføj" />
                   <input type="button" value="save" onClick={this.onSave} />
                   <input type="button" value="load" onClick={this.onLoad} />
                   <input type="button" value="clear" onClick={this.onClear} />
+                  <input type="button" value="god morgen!" onClick={this.startDay} />                  
                 </td>
               </tr>
             </tbody>
