@@ -29,7 +29,8 @@ class TimelogSummary extends React.Component {
     const end = this.getEnd();
     const items = this.props.items.map(x => this.time2decimal(x.time));
     const sum = items.reduce((a,b) => a + b, 0);
-    return this.decimal2time(end - start - sum);
+    const work = Math.max(end - start - sum, 0);  
+    return this.decimal2time(work);
   }
 
   getGoHomeTime = () => {
