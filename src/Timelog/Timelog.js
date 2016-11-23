@@ -124,6 +124,9 @@ class Timelog extends React.Component {
             </tbody>
           </table>
           <TimelogSummary start={this.state.start} end={this.state.end} items={this.state.items} />
+          <p>
+            <a href="https://app2.timelog.com/edlund/matrix_ugeseddel.asp" target="_blank">Åben timelog</a>            
+          </p>
         </form>
       </div>
     );
