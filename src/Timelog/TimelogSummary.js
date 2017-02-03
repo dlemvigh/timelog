@@ -33,6 +33,19 @@ class TimelogSummary extends React.Component {
     return this.decimal2time(work);
   }
 
+  getHoursTotal = () => {
+    const start = this.time2decimal(this.props.start);
+    const end = this.getEnd();
+    const items = this.props.items
+      .filter(x => !x.billable)
+      .map(x => this.time2decimal(x.time));
+    const sum = items.reduce((a,b) => a + b, 0);
+    const work = Math.max(end - start - sum, 0);  
+    return this.decimal2time(work);
+  }
+
+  hasBillable = () => this.props.items.some(x => x.billable && x.time)
+
   getGoHomeTime = () => {
     const start = this.time2decimal(this.props.start);
     const unbillable = this.props.items
@@ -52,7 +65,9 @@ class TimelogSummary extends React.Component {
     return (
       <div>
         <h2>Arbejde</h2>
-        <span>{this.getHours()} timer</span>
+        { this.hasBillable() && <span>{this.getHours()} timer (-billable)</span> }
+        <br />
+        <span>{this.getHoursTotal()} timer (total)</span>
         <h2>Fyraften</h2>
         <span>{this.getGoHomeTime()}</span>
       </div>
