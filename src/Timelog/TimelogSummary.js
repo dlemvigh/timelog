@@ -65,9 +65,9 @@ class TimelogSummary extends React.Component {
     return (
       <div>
         <h2>Arbejde</h2>
-        { this.hasBillable() && <span>{this.getHours()} timer (-billable)</span> }
+        { this.hasBillable() && <span>{this.getHours()} timer (uregistreret)</span> }
         <br />
-        <span>{this.getHoursTotal()} timer (total)</span>
+        <span>{this.getHoursTotal()} timer</span>
         <h2>Fyraften</h2>
         <span>{this.getGoHomeTime()}</span>
       </div>
