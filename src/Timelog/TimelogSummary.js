@@ -5,6 +5,22 @@ import leftPad from "left-pad"
 const regex = /^\D*(\d+)\D*(\d+)?\D*/
 
 class TimelogSummary extends React.Component {
+
+  state = {
+    end: this.getEnd(),
+    intervalId: null
+  };
+
+  componentDidMount() {    
+    const intervalId = setInterval(this.updateEnd, 1000);
+    this.setState({ intervalId });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+
+
   time2decimal(text) {
     if (regex.test(text)) {
       const match = text.match(regex);
@@ -26,7 +42,7 @@ class TimelogSummary extends React.Component {
 
   getHours = () => {
     const start = this.time2decimal(this.props.start);
-    const end = this.getEnd();
+    const end = this.state.end;
     const items = this.props.items.map(x => this.time2decimal(x.time));
     const sum = items.reduce((a,b) => a + b, 0);
     const work = Math.max(end - start - sum, 0);  
@@ -35,7 +51,7 @@ class TimelogSummary extends React.Component {
 
   getHoursTotal = () => {
     const start = this.time2decimal(this.props.start);
-    const end = this.getEnd();
+    const end = this.state.end;
     const items = this.props.items
       .filter(x => !x.billable)
       .map(x => this.time2decimal(x.time));
@@ -59,6 +75,12 @@ class TimelogSummary extends React.Component {
     const time = this.props.end || `${Moment().hour()}:${Moment().minutes()}`;
     const value = this.time2decimal(time);
     return Math.ceil(value * 4) / 4.0;
+  }
+
+  updateEnd = () => {
+    this.setState({
+      end: this.getEnd()
+    });
   }
 
   render() {
