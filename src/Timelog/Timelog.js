@@ -129,7 +129,8 @@ class Timelog extends React.Component {
           </p>
         </form>
           <p>
-            <a href="https://app2.timelog.com/edlund/matrix_ugeseddel.asp" target="_blank">Åben timelog</a>            
+            <a href="https://tidsreg.edlund.dk" target="_blank">Åben tids reg</a>
+            {/*<a href="https://app2.timelog.com/edlund/matrix_ugeseddel.asp" target="_blank">Åben timelog</a>*/}
           </p>
       </div>
     );
