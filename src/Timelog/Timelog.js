@@ -124,13 +124,15 @@ class Timelog extends React.Component {
             </tbody>
           </table>
           <TimelogSummary start={this.state.start} end={this.state.end} items={this.state.items} />
-          <p>
-            <a href="https://jira.edlund.dk/secure/Dashboard.jspa" target="_blank">Åben Jira</a>            
-          </p>
         </form>
           <p>
-            <a href="https://tidsreg.edlund.dk" target="_blank">Åben tids reg</a>
-            {/*<a href="https://app2.timelog.com/edlund/matrix_ugeseddel.asp" target="_blank">Åben timelog</a>*/}
+            <a href="https://jira.edlund.dk/secure/Dashboard.jspa" target="_blank" rel="noopener noreferrer">Jira</a>            
+          </p>
+          <p>
+            <a href="https://tidsreg.edlund.dk" target="_blank" rel="noopener noreferrer">Tidsreg</a>
+          </p>
+          <p>
+            <a href="https://www.google.dk/maps/timeline" target="_blank" rel="noopener noreferrer">Maps timeline</a>
           </p>
       </div>
     );
